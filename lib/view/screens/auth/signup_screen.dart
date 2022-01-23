@@ -1,4 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
+import 'package:shop/logic/controller/auth_controller.dart';
+import 'package:shop/routes/routes.dart';
 import 'package:shop/utils/my_string.dart';
 import 'package:shop/utils/theme.dart';
 import 'package:shop/view/widgets/auth/auth_button.dart';
@@ -14,6 +18,9 @@ class SignupScreen extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  final controller = Get.find<AuthController>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -104,32 +111,55 @@ class SignupScreen extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          AuthTextFormField(
-                            validator: (value) {
-                              if (value.toString().length < 6) {
-                                return 'Password should be longer or equal to 6 characters';
-                              } else {
-                                return null;
-                              }
-                            },
-                            controller: passwordController,
-                            hintText: 'password',
-                            obscureText: true,
-                            prefixIcon: Get.isDarkMode
-                                ? Image.asset('assets/images/lock.png')
-                                : const Icon(
-                                    Icons.lock,
-                                    color: pinkClr,
-                                    size: 30,
-                                  ),
-                            suffixIcon: const Text(''),
+                          GetBuilder<AuthController>(
+                            builder: (controller) => AuthTextFormField(
+                              validator: (value) {
+                                if (value.toString().length < 6) {
+                                  return 'Password should be longer or equal to 6 characters';
+                                } else {
+                                  return null;
+                                }
+                              },
+                              controller: passwordController,
+                              hintText: 'password',
+                              obscureText:
+                                  controller.isVisibility ? false : true,
+                              prefixIcon: Get.isDarkMode
+                                  ? Image.asset('assets/images/lock.png')
+                                  : const Icon(
+                                      Icons.lock,
+                                      color: pinkClr,
+                                      size: 30,
+                                    ),
+                              suffixIcon: IconButton(
+                                icon: controller.isVisibility
+                                    ? const Icon(
+                                        Icons.visibility,
+                                        color: Colors.black,
+                                      )
+                                    : const Icon(
+                                        Icons.visibility_off,
+                                        color: Colors.black,
+                                      ),
+                                onPressed: () {
+                                  controller.visibility();
+                                },
+                              ),
+                            ),
                           ),
                           const SizedBox(height: 20),
-                          const CheckWidget(),
+                          CheckWidget(),
                           const SizedBox(height: 20),
                           AuthButton(
                             text: 'Sign Up',
-                            onPressed: () {},
+                            onPressed: () async {
+                              UserCredential userCredential = await FirebaseAuth
+                                  .instance
+                                  .createUserWithEmailAndPassword(
+                                      email: "barry.allen@example.com",
+                                      password: "SuperSecretPassword!");
+                              print(userCredential);
+                            },
                           ),
                         ],
                       ),
@@ -137,7 +167,9 @@ class SignupScreen extends StatelessWidget {
                     ContainerUnder(
                       text: 'Don\'t have an Account?',
                       textType: 'Log in',
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.offNamed(Routes.loginScreen);
+                      },
                       // color: Get.isDarkMode ? mainColor : pinkClr
                     ),
                   ],

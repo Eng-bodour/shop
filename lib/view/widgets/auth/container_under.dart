@@ -7,7 +7,7 @@ class ContainerUnder extends StatelessWidget {
   final String text;
   final String textType;
   final Function() onPressed;
-  ContainerUnder(
+  const ContainerUnder(
       {required this.text,
       required this.textType,
       required this.onPressed,
@@ -40,7 +40,7 @@ class ContainerUnder extends StatelessWidget {
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 textstring: textType,
-                underline: TextDecoration.none),
+                underline: TextDecoration.underline),
           )
         ],
       ),

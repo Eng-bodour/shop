@@ -6,8 +6,11 @@ import 'package:get/get.dart';
 class AuthButton extends StatelessWidget {
   final String text;
   final Function() onPressed;
-  AuthButton({required this.text, required this.onPressed, Key? key})
-      : super(key: key);
+  const AuthButton({
+    required this.text,
+    required this.onPressed,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
