@@ -1,5 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
 import 'package:shop/logic/controller/auth_controller.dart';
 import 'package:shop/routes/routes.dart';
@@ -90,7 +88,7 @@ class SignupScreen extends StatelessWidget {
                           ),
                           AuthTextFormField(
                             validator: (value) {
-                              if (RegExp(validationEmail).hasMatch(value)) {
+                              if (!RegExp(validationEmail).hasMatch(value)) {
                                 return 'Invalid email';
                               } else {
                                 return null;
@@ -150,27 +148,31 @@ class SignupScreen extends StatelessWidget {
                           const SizedBox(height: 20),
                           CheckWidget(),
                           const SizedBox(height: 20),
-                          AuthButton(
-                            text: 'Sign Up',
-                            onPressed: () async {
-                              try {
-                                UserCredential userCredential =
-                                    await FirebaseAuth.instance
-                                        .createUserWithEmailAndPassword(
-                                            email: "bodour@example.com",
-                                            password: "b123456789");
-                              } on FirebaseAuthException catch (e) {
-                                if (e.code == 'weak-password') {
-                                  print('The password provided is too weak.');
-                                } else if (e.code == 'email-already-in-use') {
-                                  print(
-                                      'The account already exists for that email.');
+                          GetBuilder<AuthController>(
+                            builder: (controller) => AuthButton(
+                              text: 'Sign Up',
+                              onPressed: () {
+                                if (controller.isCheckedBox == false) {
+                                  Get.snackbar('cheched Box',
+                                      'Please , Accept terms & condition',
+                                      backgroundColor: Colors.green,
+                                      colorText: Colors.white,
+                                      duration: const Duration(seconds: 5),
+                                      snackPosition: SnackPosition.BOTTOM);
+                                } else if (formKey.currentState!.validate()) {
+                                  String name = nameController.text.trim();
+                                  String email = emailController.text.trim();
+                                  String password = passwordController.text;
+                                  passwordController.text.trim();
+                                  controller.signUpUsingFirebase(
+                                      name: name,
+                                      email: email,
+                                      password: password);
                                 }
-                              } catch (e) {
-                                print(e);
-                              }
-                            },
-                          ),
+                                controller.isCheckedBox = true;
+                              },
+                            ),
+                          )
                         ],
                       ),
                     ),

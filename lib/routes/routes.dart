@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 import 'package:shop/logic/bindings/auth_binding.dart';
+import 'package:shop/logic/bindings/main_binding.dart';
 import 'package:shop/view/screens/auth/forgot_screen.dart';
 
 import 'package:shop/view/screens/auth/login_screen.dart';
 import 'package:shop/view/screens/auth/signup_screen.dart';
+import 'package:shop/view/screens/main_screen.dart';
 import 'package:shop/view/screens/welcome_screen.dart';
 
 class AppRoutes {
@@ -12,6 +14,7 @@ class AppRoutes {
   static final login = Routes.loginScreen;
   static final signup = Routes.signUpScreen;
   static final forgot = Routes.forgotPassword;
+  static final main = Routes.mainScreen;
   //getPages as list
 
   static final routes = [
@@ -34,6 +37,10 @@ class AppRoutes {
       page: () => ForgotPasswordScreen(),
       binding: AuthBinding(),
     ),
+    GetPage(
+        name: Routes.mainScreen,
+        page: () => MainScreen(),
+        bindings: [AuthBinding(), MainBinding()]),
   ];
 }
 
@@ -42,4 +49,5 @@ class Routes {
   static String loginScreen = '/loginScreen';
   static String signUpScreen = '/signupScreen';
   static String forgotPassword = '/forgotPassword';
+  static String mainScreen = '/mainScreen';
 }

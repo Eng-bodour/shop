@@ -98,9 +98,15 @@ class ForgotPasswordScreen extends StatelessWidget {
                 const SizedBox(
                   height: 50,
                 ),
-                AuthButton(
-                  text: 'SEND',
-                  onPressed: () {},
+                GetBuilder<AuthController>(
+                  builder: (controller) => AuthButton(
+                    text: 'SEND',
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        controller.resetPassword(emailController.text.trim());
+                      }
+                    },
+                  ),
                 )
               ],
             ),

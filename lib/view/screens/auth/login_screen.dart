@@ -14,7 +14,7 @@ class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final controller = Get.find<AuthController>();
 
   @override
@@ -27,6 +27,8 @@ class LoginScreen extends StatelessWidget {
       ),
       backgroundColor: Get.isDarkMode ? Colors.white : darkGrayClr,
       body: SingleChildScrollView(
+          child: Form(
+        key: formKey,
         child: Column(
           children: [
             //contain all widget in page without last widget
@@ -79,22 +81,37 @@ class LoginScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    AuthTextFormField(
-                        hintText: 'Password',
-                        suffixIcon: const Text(''),
-                        prefixIcon: Get.isDarkMode
-                            ? Image.asset('assets/images/lock.png')
-                            : const Icon(Icons.lock,
-                                color: Colors.black, size: 30),
-                        validator: (value) {
-                          if (value.toString().length < 6) {
-                            return 'Password should be longer or equal to 6 characters';
-                          } else {
-                            return null;
-                          }
-                        },
-                        obscureText: false,
-                        controller: passwordController),
+                    GetBuilder<AuthController>(
+                      builder: (controller) => AuthTextFormField(
+                          hintText: 'Password',
+                          suffixIcon: IconButton(
+                            icon: controller.isVisibility
+                                ? const Icon(
+                                    Icons.visibility,
+                                    color: Colors.black,
+                                  )
+                                : const Icon(
+                                    Icons.visibility_off,
+                                    color: Colors.black,
+                                  ),
+                            onPressed: () {
+                              controller.visibility();
+                            },
+                          ),
+                          prefixIcon: Get.isDarkMode
+                              ? Image.asset('assets/images/lock.png')
+                              : const Icon(Icons.lock,
+                                  color: Colors.black, size: 30),
+                          validator: (value) {
+                            if (value.toString().length < 6) {
+                              return 'Password should be longer or equal to 6 characters';
+                            } else {
+                              return null;
+                            }
+                          },
+                          obscureText: controller.isVisibility ? false : true,
+                          controller: passwordController),
+                    ),
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
@@ -112,7 +129,18 @@ class LoginScreen extends StatelessWidget {
                     const SizedBox(height: 20),
                     // CheckWidget(),
 
-                    AuthButton(text: 'LOG IN', onPressed: () {}),
+                    GetBuilder<AuthController>(
+                      builder: (controller) => AuthButton(
+                          text: 'LOG IN',
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              String email = emailController.text.trim();
+                              String password = passwordController.text.trim();
+                              controller.logInUsingFirebase(
+                                  email: email, password: password);
+                            }
+                          }),
+                    ),
                     const SizedBox(height: 20),
                     TextUtilis(
                         color: Get.isDarkMode ? Colors.black : Colors.white,
@@ -129,9 +157,13 @@ class LoginScreen extends StatelessWidget {
                             child: const Icon(Icons.facebook,
                                 color: Colors.blue, size: 33)),
                         const SizedBox(width: 10),
-                        InkWell(
-                            onTap: () {},
-                            child: Image.asset('assets/images/google.png'))
+                        GetBuilder<AuthController>(
+                          builder: (_) => InkWell(
+                              onTap: () {
+                                controller.googleSignUpApp();
+                              },
+                              child: Image.asset('assets/images/google.png')),
+                        )
                       ],
                     ),
                   ],
@@ -148,7 +180,7 @@ class LoginScreen extends StatelessWidget {
                 })
           ],
         ),
-      ),
+      )),
     ));
   }
 }
