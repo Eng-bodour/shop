@@ -23,11 +23,11 @@ class SignupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+            backgroundColor: context.theme.backgroundColor,
             appBar: AppBar(
-              backgroundColor: Get.isDarkMode ? Colors.white : darkGrayClr,
+              backgroundColor: Get.isDarkMode ? darkGrayClr : Colors.white,
               elevation: 0,
             ),
-            backgroundColor: Get.isDarkMode ? Colors.white : darkGrayClr,
             body: SingleChildScrollView(
               child: Form(
                 key: formKey,
@@ -43,7 +43,7 @@ class SignupScreen extends StatelessWidget {
                           Row(
                             children: [
                               TextUtilis(
-                                  color: Get.isDarkMode ? mainColor : pinkClr,
+                                  color: Get.isDarkMode ? pinkClr : mainColor,
                                   fontSize: 28,
                                   fontWeight: FontWeight.w500,
                                   textstring: 'SIGN',
@@ -53,8 +53,8 @@ class SignupScreen extends StatelessWidget {
                                       0.01),
                               TextUtilis(
                                   color: Get.isDarkMode
-                                      ? Colors.black
-                                      : Colors.white,
+                                      ? Colors.white
+                                      : Colors.black,
                                   fontSize: 28,
                                   fontWeight: FontWeight.w500,
                                   textstring: 'UP',
@@ -75,12 +75,12 @@ class SignupScreen extends StatelessWidget {
                             hintText: 'UserName',
                             obscureText: false,
                             prefixIcon: Get.isDarkMode
-                                ? Image.asset('assets/images/user.png')
-                                : const Icon(
+                                ? const Icon(
                                     Icons.person,
                                     color: pinkClr,
                                     size: 30,
-                                  ),
+                                  )
+                                : Image.asset('assets/images/user.png'),
                             suffixIcon: const Text(''),
                           ),
                           const SizedBox(
@@ -98,12 +98,12 @@ class SignupScreen extends StatelessWidget {
                             hintText: 'Email',
                             obscureText: false,
                             prefixIcon: Get.isDarkMode
-                                ? Image.asset('assets/images/email.png')
-                                : const Icon(
+                                ? const Icon(
                                     Icons.email,
                                     color: pinkClr,
                                     size: 30,
-                                  ),
+                                  )
+                                : Image.asset('assets/images/email.png'),
                             suffixIcon: const Text(''),
                           ),
                           const SizedBox(
@@ -123,12 +123,12 @@ class SignupScreen extends StatelessWidget {
                               obscureText:
                                   controller.isVisibility ? false : true,
                               prefixIcon: Get.isDarkMode
-                                  ? Image.asset('assets/images/lock.png')
-                                  : const Icon(
+                                  ? const Icon(
                                       Icons.lock,
                                       color: pinkClr,
                                       size: 30,
-                                    ),
+                                    )
+                                  : Image.asset('assets/images/lock.png'),
                               suffixIcon: IconButton(
                                 icon: controller.isVisibility
                                     ? const Icon(

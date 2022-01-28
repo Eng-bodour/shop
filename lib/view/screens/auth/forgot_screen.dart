@@ -18,10 +18,11 @@ class ForgotPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      backgroundColor: context.theme.backgroundColor,
       appBar: AppBar(
-        backgroundColor: Get.isDarkMode ? Colors.white : darkGrayClr,
+        backgroundColor: Get.isDarkMode ? darkGrayClr : Colors.white,
         title: TextUtilis(
-          color: Get.isDarkMode ? mainColor : pinkClr,
+          color: Get.isDarkMode ? pinkClr : mainColor,
           textstring: 'Forgot Password',
           fontSize: 20,
           fontWeight: FontWeight.normal,
@@ -34,11 +35,10 @@ class ForgotPasswordScreen extends StatelessWidget {
           },
           icon: Icon(
             Icons.arrow_back,
-            color: Get.isDarkMode ? Colors.black : Colors.white,
+            color: Get.isDarkMode ? Colors.white : Colors.black,
           ),
         ),
       ),
-      backgroundColor: Get.isDarkMode ? Colors.white : darkGrayClr,
       body: Form(
         key: formKey,
         child: SingleChildScrollView(
@@ -52,9 +52,9 @@ class ForgotPasswordScreen extends StatelessWidget {
                       onPressed: () {
                         Get.back();
                       },
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.close_rounded,
-                        color: Colors.white,
+                        color: Get.isDarkMode ? Colors.white : Colors.black,
                       )),
                 ),
                 const SizedBox(
@@ -63,7 +63,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 Text(
                   'if you want to recovery your account then please provide your email ID below',
                   style: TextStyle(
-                      color: Get.isDarkMode ? Colors.black : Colors.white),
+                      color: Get.isDarkMode ? Colors.white : Colors.black),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(
@@ -80,12 +80,12 @@ class ForgotPasswordScreen extends StatelessWidget {
                     hintText: 'Email',
                     suffixIcon: const Text(''),
                     prefixIcon: Get.isDarkMode
-                        ? Image.asset('assets/images/email.png')
-                        : const Icon(
+                        ? const Icon(
                             Icons.email,
                             color: Colors.black,
                             size: 30,
-                          ),
+                          )
+                        : Image.asset('assets/images/email.png'),
                     validator: (value) {
                       if (!RegExp(validationEmail).hasMatch(value)) {
                         return 'Invalid email';

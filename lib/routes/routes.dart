@@ -11,10 +11,8 @@ import 'package:shop/view/screens/welcome_screen.dart';
 class AppRoutes {
   //initialroutes
   static final welcome = Routes.welcomeScreen;
-  static final login = Routes.loginScreen;
-  static final signup = Routes.signUpScreen;
-  static final forgot = Routes.forgotPassword;
   static final main = Routes.mainScreen;
+
   //getPages as list
 
   static final routes = [

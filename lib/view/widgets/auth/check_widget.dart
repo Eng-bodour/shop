@@ -37,7 +37,7 @@ class CheckWidget extends StatelessWidget {
           Row(
             children: [
               TextUtilis(
-                  color: Get.isDarkMode ? Colors.black : Colors.white,
+                  color: Get.isDarkMode ? Colors.white : Colors.black,
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
                   textstring: 'I accept',
@@ -46,7 +46,7 @@ class CheckWidget extends StatelessWidget {
                 width: 10,
               ),
               TextUtilis(
-                  color: Get.isDarkMode ? Colors.black : Colors.white,
+                  color: Get.isDarkMode ? Colors.white : Colors.black,
                   fontSize: 16,
                   fontWeight: FontWeight.normal,
                   textstring: 'terms & conditions',

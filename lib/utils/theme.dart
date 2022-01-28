@@ -8,3 +8,14 @@ const Color kColor2 = Color(0XffADA798);
 const Color kColor3 = Color(0XffA5947F);
 const Color kColor4 = Color(0Xff738871);
 const Color kColor5 = Color(0Xff6D454D);
+
+class ThemesApp {
+  static final light = ThemeData(
+      primaryColor: mainColor,
+      backgroundColor: Colors.white,
+      brightness: Brightness.light);
+  static final dark = ThemeData(
+      primaryColor: darkGrayClr,
+      backgroundColor: darkGrayClr,
+      brightness: Brightness.dark);
+}

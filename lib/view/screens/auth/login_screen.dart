@@ -21,11 +21,11 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      backgroundColor: context.theme.backgroundColor,
       appBar: AppBar(
-        backgroundColor: Get.isDarkMode ? Colors.white : darkGrayClr,
+        backgroundColor: Get.isDarkMode ? darkGrayClr : Colors.white,
         elevation: 0,
       ),
-      backgroundColor: Get.isDarkMode ? Colors.white : darkGrayClr,
       body: SingleChildScrollView(
           child: Form(
         key: formKey,
@@ -42,14 +42,14 @@ class LoginScreen extends StatelessWidget {
                     Row(
                       children: [
                         TextUtilis(
-                            color: Get.isDarkMode ? mainColor : pinkClr,
+                            color: Get.isDarkMode ? pinkClr : mainColor,
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
                             textstring: 'LOG',
                             underline: TextDecoration.none),
                         const SizedBox(width: 10),
                         TextUtilis(
-                            color: Get.isDarkMode ? Colors.black : Colors.white,
+                            color: Get.isDarkMode ? Colors.white : Colors.black,
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
                             textstring: 'IN',
@@ -63,12 +63,12 @@ class LoginScreen extends StatelessWidget {
                         hintText: 'Email',
                         suffixIcon: const Text(''),
                         prefixIcon: Get.isDarkMode
-                            ? Image.asset('assets/images/email.png')
-                            : const Icon(
+                            ? const Icon(
                                 Icons.email,
-                                color: Colors.black,
+                                color: pinkClr,
                                 size: 30,
-                              ),
+                              )
+                            : Image.asset('assets/images/email.png'),
                         validator: (value) {
                           if (!RegExp(validationEmail).hasMatch(value)) {
                             return 'Invalid email';
@@ -99,9 +99,12 @@ class LoginScreen extends StatelessWidget {
                             },
                           ),
                           prefixIcon: Get.isDarkMode
-                              ? Image.asset('assets/images/lock.png')
-                              : const Icon(Icons.lock,
-                                  color: Colors.black, size: 30),
+                              ? const Icon(
+                                  Icons.lock,
+                                  color: pinkClr,
+                                  size: 30,
+                                )
+                              : Image.asset('assets/images/lock.png'),
                           validator: (value) {
                             if (value.toString().length < 6) {
                               return 'Password should be longer or equal to 6 characters';
@@ -119,7 +122,7 @@ class LoginScreen extends StatelessWidget {
                             Get.toNamed(Routes.forgotPassword);
                           },
                           child: TextUtilis(
-                            color: Get.isDarkMode ? Colors.black : Colors.white,
+                            color: Get.isDarkMode ? Colors.white : Colors.black,
                             fontSize: 14,
                             fontWeight: FontWeight.normal,
                             underline: TextDecoration.none,
@@ -143,7 +146,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     TextUtilis(
-                        color: Get.isDarkMode ? Colors.black : Colors.white,
+                        color: Get.isDarkMode ? Colors.white : Colors.black,
                         fontSize: 18,
                         fontWeight: FontWeight.normal,
                         textstring: 'OR',

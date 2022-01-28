@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:shop/routes/routes.dart';
 import 'package:shop/utils/theme.dart';
 
@@ -12,6 +13,7 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      // backgroundColor: context.theme.backgroundColor,
       body: Stack(
         children: [
           SizedBox(

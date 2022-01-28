@@ -11,6 +11,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(child: Obx(() {
       return Scaffold(
+        backgroundColor: context.theme.backgroundColor,
         appBar: AppBar(
           // leading: Container() this line , no back the last page
           leading: Container(),
@@ -22,12 +23,11 @@ class MainScreen extends StatelessWidget {
             IconButton(
                 onPressed: () {}, icon: Image.asset('assets/images/shop.png'))
           ],
-          backgroundColor: Get.isDarkMode ? mainColor : darkGrayClr,
+          backgroundColor: Get.isDarkMode ? darkGrayClr : mainColor,
         ),
-        backgroundColor: Get.isDarkMode ? Colors.white : darkGrayClr,
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: controller.currentIndex.value,
-          backgroundColor: Get.isDarkMode ? Colors.white : darkGrayClr,
+          backgroundColor: Get.isDarkMode ? darkGrayClr : Colors.white,
           type: BottomNavigationBarType.fixed,
           onTap: (index) {
             controller.currentIndex.value = index;
@@ -36,44 +36,44 @@ class MainScreen extends StatelessWidget {
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,
-                color: Get.isDarkMode ? Colors.black : Colors.white,
+                color: Get.isDarkMode ? Colors.white : Colors.black,
               ),
               activeIcon: Icon(
                 Icons.home,
-                color: Get.isDarkMode ? mainColor : pinkClr,
+                color: Get.isDarkMode ? pinkClr : mainColor,
               ),
               label: '',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.category,
-                color: Get.isDarkMode ? Colors.black : Colors.white,
+                color: Get.isDarkMode ? Colors.white : Colors.black,
               ),
               activeIcon: Icon(
                 Icons.category,
-                color: Get.isDarkMode ? mainColor : pinkClr,
+                color: Get.isDarkMode ? pinkClr : mainColor,
               ),
               label: '',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.favorite,
-                color: Get.isDarkMode ? Colors.black : Colors.white,
+                color: Get.isDarkMode ? Colors.white : Colors.black,
               ),
               activeIcon: Icon(
                 Icons.favorite,
-                color: Get.isDarkMode ? mainColor : pinkClr,
+                color: Get.isDarkMode ? pinkClr : mainColor,
               ),
               label: '',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.settings,
-                color: Get.isDarkMode ? Colors.black : Colors.white,
+                color: Get.isDarkMode ? Colors.white : Colors.black,
               ),
               activeIcon: Icon(
                 Icons.settings,
-                color: Get.isDarkMode ? mainColor : pinkClr,
+                color: Get.isDarkMode ? pinkClr : mainColor,
               ),
               label: '',
             )
@@ -81,6 +81,7 @@ class MainScreen extends StatelessWidget {
         ),
         body: IndexedStack(
           index: controller.currentIndex.value,
+          // ignore: invalid_use_of_protected_member
           children: controller.tabs.value,
         ),
       );
