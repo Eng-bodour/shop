@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemesApp.light,
       darkTheme: ThemesApp.dark,
       themeMode: ThemeController().themeDataGet,
+      //you have user(FirebaseAuth.instance.currentUser != null from firebase)||(gmail and facebook log in (GetStorage().read<bool>('auth') == true))
       initialRoute: FirebaseAuth.instance.currentUser != null ||
               GetStorage().read<bool>('auth') == true
           ? AppRoutes.main

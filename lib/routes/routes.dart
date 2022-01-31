@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:shop/logic/bindings/auth_binding.dart';
 import 'package:shop/logic/bindings/main_binding.dart';
+import 'package:shop/logic/bindings/product_binding.dart';
 import 'package:shop/view/screens/auth/forgot_screen.dart';
 
 import 'package:shop/view/screens/auth/login_screen.dart';
@@ -38,7 +39,7 @@ class AppRoutes {
     GetPage(
         name: Routes.mainScreen,
         page: () => MainScreen(),
-        bindings: [AuthBinding(), MainBinding()]),
+        bindings: [AuthBinding(), MainBinding(), ProductBinding()]),
   ];
 }
 
