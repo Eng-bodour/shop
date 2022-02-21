@@ -6,6 +6,7 @@ import 'package:shop/view/screens/auth/forgot_screen.dart';
 
 import 'package:shop/view/screens/auth/login_screen.dart';
 import 'package:shop/view/screens/auth/signup_screen.dart';
+import 'package:shop/view/screens/cart_screen.dart';
 import 'package:shop/view/screens/main_screen.dart';
 import 'package:shop/view/screens/welcome_screen.dart';
 
@@ -40,6 +41,11 @@ class AppRoutes {
         name: Routes.mainScreen,
         page: () => MainScreen(),
         bindings: [AuthBinding(), MainBinding(), ProductBinding()]),
+    GetPage(
+      name: Routes.cartScreen,
+      page: () => CartScreen(),
+      binding: AuthBinding(),
+    ),
   ];
 }
 
@@ -49,4 +55,5 @@ class Routes {
   static String signUpScreen = '/signupScreen';
   static String forgotPassword = '/forgotPassword';
   static String mainScreen = '/mainScreen';
+  static String cartScreen = '/cartScreen';
 }

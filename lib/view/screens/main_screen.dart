@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop/logic/controller/main_controller.dart';
+import 'package:shop/routes/routes.dart';
 import 'package:shop/utils/theme.dart';
 
 class MainScreen extends StatelessWidget {
@@ -21,7 +22,10 @@ class MainScreen extends StatelessWidget {
           elevation: 0,
           actions: [
             IconButton(
-                onPressed: () {}, icon: Image.asset('assets/images/shop.png'))
+                onPressed: () {
+                  Get.toNamed(Routes.cartScreen);
+                },
+                icon: Image.asset('assets/images/shop.png'))
           ],
           backgroundColor: Get.isDarkMode ? darkGrayClr : mainColor,
         ),
