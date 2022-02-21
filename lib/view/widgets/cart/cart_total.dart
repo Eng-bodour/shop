@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shop/logic/controller/cart_controller.dart';
 import 'package:shop/utils/theme.dart';
 import 'package:shop/view/widgets/text_utilis.dart';
 import 'package:get/get.dart';
 
 class CartTotal extends StatelessWidget {
-  const CartTotal({Key? key}) : super(key: key);
+  CartTotal({Key? key}) : super(key: key);
+  final controller = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class CartTotal extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Text('\$ 680.444',
+                Text('\$${controller.total} ',
                     style: TextStyle(
                       color: Get.isDarkMode ? Colors.white : Colors.black,
                       fontSize: 20,

@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shop/logic/controller/cart_controller.dart';
+import 'package:shop/model/product_models.dart';
 import 'package:shop/utils/theme.dart';
 
 class CartProductCard extends StatelessWidget {
-  const CartProductCard({Key? key}) : super(key: key);
+  final ProductModels productModels;
+  final int index;
+  final int quantity;
+  CartProductCard(
+      {required this.productModels,
+      required this.index,
+      required this.quantity,
+      Key? key})
+      : super(key: key);
+
+  final controller = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +41,8 @@ class CartProductCard extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
-                image: const DecorationImage(
-                    image: AssetImage('assets/images/heart.png'),
+                image: DecorationImage(
+                    image: NetworkImage(productModels.image),
                     fit: BoxFit.cover)),
           ),
           const SizedBox(
@@ -42,8 +54,7 @@ class CartProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                    'flutter developer codeing flutter developer codeing flutter developer codeing',
+                Text(productModels.title,
                     style: TextStyle(
                         color: Get.isDarkMode ? Colors.white : Colors.black,
                         fontSize: 14,
@@ -52,7 +63,8 @@ class CartProductCard extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Text('\$ 109.99',
+                Text(
+                    '\$ ${controller.productSubTotal[index].toStringAsFixed(2)}',
                     style: TextStyle(
                         color: Get.isDarkMode ? Colors.white : Colors.black,
                         fontSize: 16,
@@ -67,25 +79,31 @@ class CartProductCard extends StatelessWidget {
               Row(
                 children: [
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.removeProductsFromCart(productModels);
+                      },
                       icon: Icon(
                         Icons.remove_circle,
                         color: Get.isDarkMode ? Colors.white : Colors.black,
                       )),
-                  const Text('1',
-                      style: TextStyle(
+                  Text('$quantity',
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           overflow: TextOverflow.ellipsis)),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.addProductToCart(productModels);
+                      },
                       icon: Icon(Icons.add_circle,
                           color: Get.isDarkMode ? Colors.white : Colors.black)),
                 ],
               ),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.removeOneProduct(productModels);
+                  },
                   icon: Icon(
                     Icons.delete,
                     size: 20,
