@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop/utils/theme.dart';
+import 'package:shop/view/widgets/cart/cart_total.dart';
 import 'package:shop/view/widgets/cart/empty_cart.dart';
 import 'package:shop/view/widgets/cart/cart_product_card.dart';
 
@@ -37,7 +38,11 @@ class CartScreen extends StatelessWidget {
                         height: 20,
                       );
                     },
-                    itemCount: 1))
+                    itemCount: 1)),
+            Padding(
+              padding: EdgeInsets.only(bottom: 30),
+              child: CartTotal(),
+            )
           ],
         ),
       ),
