@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shop/logic/controller/cart_controller.dart';
 import 'package:shop/logic/controller/product_controller.dart';
+import 'package:shop/model/product_models.dart';
 
 import 'package:shop/utils/theme.dart';
 import 'package:shop/view/widgets/text_utilis.dart';
@@ -8,6 +10,7 @@ import 'package:shop/view/widgets/text_utilis.dart';
 class CardItem extends StatelessWidget {
   CardItem({Key? key}) : super(key: key);
   final controller = Get.find<ProductController>();
+  final cartController = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +39,8 @@ class CardItem extends StatelessWidget {
                     image: controller.productList[index].image,
                     price: controller.productList[index].price,
                     rate: controller.productList[index].rating.rate,
-                    productId: controller.productList[index].id);
+                    productId: controller.productList[index].id,
+                    productModels: controller.productList[index]);
               }),
         );
       }
@@ -48,6 +52,7 @@ class CardItem extends StatelessWidget {
     required double price,
     required double rate,
     required int productId,
+    required ProductModels productModels,
   }) {
     return Padding(
       padding: const EdgeInsets.all(20),
@@ -81,8 +86,10 @@ class CardItem extends StatelessWidget {
                                 Get.isDarkMode ? Colors.black : Colors.black),
                   ),
                   IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.add,
+                      onPressed: () {
+                        cartController.addProductToCart(productModels);
+                      },
+                      icon: Icon(Icons.shopping_cart,
                           color: Get.isDarkMode ? Colors.black : Colors.black))
                 ],
               );
