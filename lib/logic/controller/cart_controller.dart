@@ -27,7 +27,32 @@ class CartController extends GetxController {
   }
 
   void removeOneProduct(ProductModels productModels) {
-    productMap.removeWhere((key, value) => key == productModels);
+    Get.defaultDialog(
+      backgroundColor: Get.isDarkMode ? darkGrayClr : Colors.white,
+      radius: 10,
+      title: 'clear this product',
+      titleStyle: TextStyle(
+          fontSize: 18,
+          color: Get.isDarkMode ? Colors.white : Colors.black,
+          fontWeight: FontWeight.bold),
+      middleText: 'Are you Sure you  need to clear this product',
+      middleTextStyle: TextStyle(
+          fontSize: 18,
+          color: Get.isDarkMode ? Colors.white : Colors.black,
+          fontWeight: FontWeight.bold),
+      textCancel: 'No',
+      cancelTextColor: Get.isDarkMode ? Colors.white : Colors.black,
+      onCancel: () {
+        Get.toNamed(Routes.cartScreen);
+      },
+      textConfirm: 'Yes',
+      confirmTextColor: Get.isDarkMode ? Colors.white : Colors.black,
+      onConfirm: () {
+        productMap.removeWhere((key, value) => key == productModels);
+        Get.back();
+      },
+      buttonColor: Get.isDarkMode ? pinkClr : mainColor,
+    );
   }
 
   void clearAllProducts() {
