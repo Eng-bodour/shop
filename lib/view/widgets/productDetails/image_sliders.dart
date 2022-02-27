@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
 import 'package:shop/utils/theme.dart';
+import 'package:shop/view/widgets/productDetails/color_picker.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ImageSlider extends StatefulWidget {
@@ -17,8 +18,19 @@ class ImageSlider extends StatefulWidget {
 }
 
 class _ImageSliderState extends State<ImageSlider> {
+  final List<Color> colorSelected = [
+    kColor1,
+    kColor2,
+    kColor3,
+    kColor4,
+    kColor5,
+    kColor2,
+    kColor3,
+    kColor4,
+  ];
   CarouselController carouselController = CarouselController();
   int currentPage = 0;
+  int currentColor = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +76,38 @@ class _ImageSliderState extends State<ImageSlider> {
                   dotHeight: 10,
                   activeDotColor: Get.isDarkMode ? pinkClr : mainColor,
                   dotColor: Get.isDarkMode ? Colors.black : Colors.white,
-                )))
+                ))),
+        Positioned(
+            bottom: 30,
+            right: 30,
+            child: Container(
+              height: 200,
+              width: 50,
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: ListView.separated(
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        currentColor = index;
+                      });
+                    },
+                    child: ColorPicker(
+                      outerBorder: currentColor == index,
+                      color: colorSelected[index],
+                    ),
+                  );
+                },
+                separatorBuilder: (context, index) => const SizedBox(
+                  height: 3,
+                ),
+                itemCount: colorSelected.length,
+              ),
+            ))
       ],
     );
   }

@@ -12,19 +12,21 @@ class ProductDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.theme.backgroundColor,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ImageSlider(
-              imageUrl: productModels.image,
-            ),
-            // ClothesInfo(),
-            //SizeList(),
-            //AddCart(),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: context.theme.backgroundColor,
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ImageSlider(
+                imageUrl: productModels.image,
+              ),
+              // ClothesInfo(),
+              //SizeList(),
+              //AddCart(),
+            ],
+          ),
         ),
       ),
     );
