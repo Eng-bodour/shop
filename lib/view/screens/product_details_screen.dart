@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop/model/product_models.dart';
+import 'package:shop/view/widgets/productDetails/clothes_info.dart';
 import 'package:shop/view/widgets/productDetails/image_sliders.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
@@ -22,7 +23,11 @@ class ProductDetailsScreen extends StatelessWidget {
               ImageSlider(
                 imageUrl: productModels.image,
               ),
-              // ClothesInfo(),
+              ClothesInfo(
+                title: productModels.title,
+                id: productModels.id,
+                rate: productModels.rating.rate,
+              ),
               //SizeList(),
               //AddCart(),
             ],
