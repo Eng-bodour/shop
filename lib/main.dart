@@ -7,6 +7,7 @@ import 'package:shop/logic/controller/theme_controller.dart';
 import 'package:shop/routes/routes.dart';
 import 'package:shop/utils/theme.dart';
 
+
 void main() async {
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
