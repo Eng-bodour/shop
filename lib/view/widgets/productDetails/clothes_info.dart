@@ -100,6 +100,7 @@ class ClothesInfo extends StatelessWidget {
             ReadMoreText(
               description,
               trimLines: 3,
+              trimMode: TrimMode.Line,
               textAlign: TextAlign.justify,
               trimCollapsedText: 'Show More',
               trimExpandedText: 'Show Less',
