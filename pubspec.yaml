@@ -95,6 +95,8 @@ flutter:
      - assets/images/shop.png
      - assets/images/user.png
      - assets/images/facebook.png
+     - assets/images/search_empry_light.png
+     - assets/images/search_empty_dark.png
 
 
    

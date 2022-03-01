@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:shop/model/product_models.dart';
@@ -9,8 +10,11 @@ class ProductController extends GetxController {
   var isLoading = true.obs;
   var storage = GetStorage();
   //var isFavorites = false.obs;
-
   var favoritesList = <ProductModels>[].obs;
+
+  //search
+  var searchList = <ProductModels>[].obs;
+  TextEditingController searchEditController = TextEditingController();
 
 // we have call to show image
   @override
@@ -62,5 +66,23 @@ class ProductController extends GetxController {
 
   bool isFavorites(int productId) {
     return favoritesList.any((element) => element.id == productId);
+  }
+
+  //search bar logic
+  void addSearchToList(String searchName) {
+    searchName = searchName.toLowerCase();
+    searchList.value = productList.where((searchProductModels) {
+      var searchTitle = searchProductModels.title.toLowerCase();
+      var searchPrice = searchProductModels.price.toString().toLowerCase();
+      return searchTitle.contains(searchName) ||
+          searchPrice.toString().contains(searchName);
+    }).toList();
+
+    update();
+  }
+
+  void clearSearch() {
+    searchEditController.clear();
+    addSearchToList('');
   }
 }
