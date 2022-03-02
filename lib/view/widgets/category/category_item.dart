@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shop/logic/controller/cart_controller.dart';
+import 'package:shop/logic/controller/category_controller.dart';
 import 'package:shop/logic/controller/product_controller.dart';
 import 'package:shop/model/product_models.dart';
 import 'package:shop/utils/theme.dart';
@@ -8,9 +9,14 @@ import 'package:shop/view/screens/product_details_screen.dart';
 import 'package:shop/view/widgets/text_utilis.dart';
 
 class CategoryItems extends StatelessWidget {
-  CategoryItems({Key? key}) : super(key: key);
+  String categoryTitle;
+  CategoryItems({
+    required this.categoryTitle,
+    Key? key,
+  }) : super(key: key);
   final controller = Get.find<ProductController>();
   final cartController = Get.find<CartController>();
+  final categoryController = Get.find<CategoryController>();
 
   @override
   Widget build(BuildContext context) {
@@ -18,32 +24,44 @@ class CategoryItems extends StatelessWidget {
     return Scaffold(
       backgroundColor: context.theme.backgroundColor,
       appBar: AppBar(
-        title: const Text('Category Items'),
+        title: Text(categoryTitle),
         centerTitle: true,
         backgroundColor: Get.isDarkMode ? darkGrayClr : mainColor,
       ),
-      body: GridView.builder(
-          itemCount: controller.productList.length,
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            childAspectRatio: 0.9,
-            mainAxisExtent: 250,
-            crossAxisSpacing: 10.0,
-            mainAxisSpacing: 10.0,
-            maxCrossAxisExtent: 250,
-          ),
-          itemBuilder: (context, index) {
-            return buildCardItems(
-                image: controller.productList[index].image,
-                price: controller.productList[index].price,
-                rate: controller.productList[index].rating.rate,
-                productId: controller.productList[index].id,
-                productModels: controller.productList[index],
-                onTap: () {
-                  Get.to(() => ProductDetailsScreen(
-                        productModels: controller.productList[index],
-                      ));
-                });
-          }),
+      body: Obx(() {
+        if (categoryController.isAllCategory.value) {
+          return Center(
+            child: CircularProgressIndicator(
+              color: Get.isDarkMode ? pinkClr : mainColor,
+            ),
+          );
+        } else {
+          return GridView.builder(
+              itemCount: categoryController.categoreListItems.length,
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                childAspectRatio: 0.9,
+                mainAxisExtent: 250,
+                crossAxisSpacing: 10.0,
+                mainAxisSpacing: 10.0,
+                maxCrossAxisExtent: 250,
+              ),
+              itemBuilder: (context, index) {
+                return buildCardItems(
+                    image: categoryController.categoreListItems[index].image,
+                    price: categoryController.categoreListItems[index].price,
+                    rate:
+                        categoryController.categoreListItems[index].rating.rate,
+                    productId: categoryController.categoreListItems[index].id,
+                    productModels: categoryController.categoreListItems[index],
+                    onTap: () {
+                      Get.to(() => ProductDetailsScreen(
+                            productModels:
+                                categoryController.categoreListItems[index],
+                          ));
+                    });
+              });
+        }
+      }),
     );
   }
 
