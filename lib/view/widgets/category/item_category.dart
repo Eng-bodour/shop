@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:shop/logic/controller/cart_controller.dart';
 import 'package:shop/logic/controller/product_controller.dart';
 import 'package:shop/model/product_models.dart';
-
 import 'package:shop/utils/theme.dart';
 import 'package:shop/view/screens/product_details_screen.dart';
 import 'package:shop/view/widgets/text_utilis.dart';
@@ -19,7 +18,7 @@ class CategoryItems extends StatelessWidget {
     return Scaffold(
       backgroundColor: context.theme.backgroundColor,
       appBar: AppBar(
-        title: Text('Category Items'),
+        title: const Text('Category Items'),
         centerTitle: true,
         backgroundColor: Get.isDarkMode ? darkGrayClr : mainColor,
       ),

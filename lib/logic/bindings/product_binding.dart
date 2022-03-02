@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shop/logic/controller/cart_controller.dart';
+import 'package:shop/logic/controller/category_controller.dart';
 import 'package:shop/logic/controller/product_controller.dart';
 
 class ProductBinding extends Bindings {
@@ -8,5 +9,6 @@ class ProductBinding extends Bindings {
     Get.put(ProductController());
     //no run direcory if click run then
     Get.lazyPut(() => CartController());
+    Get.put(CategoryController());
   }
 }
