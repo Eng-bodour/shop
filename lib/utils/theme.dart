@@ -14,9 +14,9 @@ const Color logOutSettings = Color(0xff5f95ef);
 const Color notiSettings = Color(0xffdf5862);
 const Color languageSettings = Color(0xffCB256C);
 
-String arabic = 'Arabic (SA)';
-String english = 'English (EN)';
-String france = 'France (FR)';
+String arabic = 'Arabic';
+String english = 'English';
+String france = 'France';
 
 String ara = 'ar';
 String ene = 'en';

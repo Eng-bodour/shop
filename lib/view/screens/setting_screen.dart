@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shop/logic/controller/auth_controller.dart';
-import 'package:shop/logic/controller/theme_controller.dart';
 import 'package:shop/utils/theme.dart';
 import 'package:shop/view/widgets/setting/dark_mode_widget.dart';
 import 'package:shop/view/widgets/setting/language_widget.dart';
@@ -30,7 +28,7 @@ class SettingScreen extends StatelessWidget {
             color: Get.isDarkMode ? pinkClr : mainColor,
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            textstring: 'GENERAL',
+            textstring: 'GENERAL'.tr,
             underline: TextDecoration.none,
           ),
           const SizedBox(

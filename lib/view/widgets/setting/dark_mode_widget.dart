@@ -52,7 +52,7 @@ class DarkModeWidget extends StatelessWidget {
           color: Get.isDarkMode ? Colors.white : Colors.black,
           fontSize: 22,
           fontWeight: FontWeight.bold,
-          textstring: 'Darl Mode',
+          textstring: 'Dark Mode'.tr,
           underline: TextDecoration.none,
         )
       ]),
