@@ -8,6 +8,19 @@ const Color kColor2 = Color(0XffADA798);
 const Color kColor3 = Color(0XffA5947F);
 const Color kColor4 = Color(0Xff738871);
 const Color kColor5 = Color(0Xff6D454D);
+const Color darkSettings = Color(0xff6132e4);
+const Color accountSettings = Color(0xff73bc65);
+const Color logOutSettings = Color(0xff5f95ef);
+const Color notiSettings = Color(0xffdf5862);
+const Color languageSettings = Color(0xffCB256C);
+
+String arabic = 'Arabic (SA)';
+String english = 'English (EN)';
+String france = 'France (FR)';
+
+String ara = 'ar';
+String ene = 'en';
+String frf = 'fr';
 
 class ThemesApp {
   static final light = ThemeData(

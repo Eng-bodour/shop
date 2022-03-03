@@ -3,6 +3,10 @@ import 'package:get/get.dart';
 import 'package:shop/logic/controller/auth_controller.dart';
 import 'package:shop/logic/controller/theme_controller.dart';
 import 'package:shop/utils/theme.dart';
+import 'package:shop/view/widgets/setting/dark_mode_widget.dart';
+import 'package:shop/view/widgets/setting/language_widget.dart';
+import 'package:shop/view/widgets/setting/logout_widget.dart';
+import 'package:shop/view/widgets/text_utilis.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -10,68 +14,45 @@ class SettingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: context.theme.backgroundColor,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: TextButton(
-                onPressed: () {
-                  ThemeController().cangesTheme();
-                },
-                child: Text(
-                  'Dark Mode',
-                  style: TextStyle(
-                      color: Get.isDarkMode ? Colors.white : darkGrayClr),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            GetBuilder<AuthController>(
-              builder: (controller) => Center(
-                child: TextButton(
-                  onPressed: () {
-                    Get.defaultDialog(
-                      backgroundColor:
-                          Get.isDarkMode ? darkGrayClr : Colors.white,
-                      radius: 10,
-                      title: 'logout from APP',
-                      titleStyle: TextStyle(
-                          fontSize: 18,
-                          color: Get.isDarkMode ? Colors.white : Colors.black,
-                          fontWeight: FontWeight.bold),
-                      middleText: 'Are you Sure you  need to logout',
-                      middleTextStyle: TextStyle(
-                          fontSize: 18,
-                          color: Get.isDarkMode ? Colors.white : Colors.black,
-                          fontWeight: FontWeight.bold),
-                      textCancel: 'No',
-                      cancelTextColor:
-                          Get.isDarkMode ? Colors.white : Colors.black,
-                      onCancel: () {
-                        Get.back();
-                      },
-                      textConfirm: 'Yes',
-                      confirmTextColor:
-                          Get.isDarkMode ? Colors.white : Colors.black,
-                      onConfirm: () {
-                        controller.signOutFromApp();
-                      },
-                      buttonColor: Get.isDarkMode ? pinkClr : mainColor,
-                    );
-                    //
-                  },
-                  child: Text(
-                    'Log Out',
-                    style: TextStyle(
-                        color: Get.isDarkMode ? Colors.white : darkGrayClr),
-                  ),
-                ),
-              ),
-            )
-          ],
-        ));
+      backgroundColor: context.theme.backgroundColor,
+      body: ListView(
+        padding: const EdgeInsets.all(24),
+        children: [
+          //ProfileImage(),
+          const SizedBox(
+            height: 10,
+          ),
+          Divider(color: Get.isDarkMode ? Colors.white : Colors.grey),
+          const SizedBox(
+            height: 20,
+          ),
+          TextUtilis(
+            color: Get.isDarkMode ? pinkClr : mainColor,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            textstring: 'GENERAL',
+            underline: TextDecoration.none,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+
+          DarkModeWidget(),
+          const SizedBox(
+            height: 20,
+          ),
+
+          LanguageWidget(),
+          const SizedBox(
+            height: 20,
+          ),
+          LogOutWidget(),
+
+          const SizedBox(
+            height: 20,
+          ),
+        ],
+      ),
+    );
   }
 }
