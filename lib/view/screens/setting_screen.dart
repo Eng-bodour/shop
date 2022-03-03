@@ -4,6 +4,7 @@ import 'package:shop/utils/theme.dart';
 import 'package:shop/view/widgets/setting/dark_mode_widget.dart';
 import 'package:shop/view/widgets/setting/language_widget.dart';
 import 'package:shop/view/widgets/setting/logout_widget.dart';
+import 'package:shop/view/widgets/setting/profile_image_widget.dart';
 import 'package:shop/view/widgets/text_utilis.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -16,7 +17,7 @@ class SettingScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(24),
         children: [
-          //ProfileImage(),
+          ProfileImage(),
           const SizedBox(
             height: 10,
           ),
@@ -34,18 +35,15 @@ class SettingScreen extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-
           DarkModeWidget(),
           const SizedBox(
             height: 20,
           ),
-
           LanguageWidget(),
           const SizedBox(
             height: 20,
           ),
           LogOutWidget(),
-
           const SizedBox(
             height: 20,
           ),

@@ -5,13 +5,21 @@ import 'package:shop/utils/theme.dart';
 
 class SettingController extends GetxController {
   final switchValue = false.obs;
+
+  String capitalize(String typeUserName) {
+    return typeUserName
+        .split(" ")
+        .map((eachword) => eachword.capitalize)
+        .join(" ")
+        .toString();
+  }
+
   var storage = GetStorage();
   var langLocal = ene;
 
   //language
   @override
   void onInit() async {
-    // TODO: implement onInit
     super.onInit();
     langLocal = await getLanguage;
   }
